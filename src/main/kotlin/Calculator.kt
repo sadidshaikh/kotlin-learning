@@ -1,13 +1,15 @@
 fun main() {
-    val calculator = Calculator(initialValue = 2)
+    val calculator = BetterCalculator(initialValue = 2)
     calculator.add(38)
     println(calculator.currentValue)
 
     calculator.add(-8)
     println(calculator.currentValue)
+
+    println(calculator.remainder(10))
 }
 
-class Calculator(initialValue: Int = 0) {
+abstract class Calculator(initialValue: Int = 0) {
     var currentValue = initialValue
 
     fun add(first: Int): Int {
@@ -29,4 +31,12 @@ class Calculator(initialValue: Int = 0) {
         currentValue /= first
         return currentValue
     }
+}
+
+class BetterCalculator(initialValue: Int) : Calculator(initialValue) {
+
+    fun remainder(number: Int): Int {
+        return currentValue % number
+    }
+
 }
